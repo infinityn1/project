@@ -32,10 +32,10 @@ class Person:
     def get_info_by_number(self, number):
         try:
             with open('life_path_info.txt', 'r', encoding='utf-8') as file:
-                lines = file.readlines()
-                for line in lines:
-                    if line.startswith(f"#{number}"):
-                        return line.split(' ', 1)[1].strip()
+                lines = file.read().split('\n#')
+                for block in lines:
+                    if block.startswith(f"{number}"):
+                        return block.strip()
         except FileNotFoundError:
             return "Error: life_path_info.txt file not found."
         return f"No information found for life path number {number}."
